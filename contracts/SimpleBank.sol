@@ -26,7 +26,7 @@ contract SimpleBank {
    */
 
   // Add an argument for this event, an accountAddress
-  event LogEnrolled();
+  event LogEnrolled(address indexed user);
 
   // Add 2 arguments for this event, an accountAddress and an amount
   event LogDepositMade();
@@ -58,8 +58,12 @@ contract SimpleBank {
   /// @notice Enroll a customer with the bank
   /// @return The users enrolled status
   // Emit the appropriate event
-  function enroll() public returns (bool){
+  function enroll() public returns (bool) {
     // 1. enroll of the sender of this transaction
+    require(enrolled[msg.sender] == false, 'user already enrolled');
+
+    enrolled[msg.sender] = true;
+    emit LogEnrolled(msg.sender);
   }
 
   /// @notice Deposit ether into bank
