@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "truffle-plugin-debugger": "^0.0.2"
+  }
+}
